@@ -133,7 +133,7 @@
 
 <body>
     <!-- LOGIN OVERLAY -->
-<div id="login-overlay" style="
+    <div id="login-overlay" style="
     position: fixed;
     inset: 0;
     backdrop-filter: blur(10px);
@@ -145,7 +145,7 @@
      opacity: 1;
     transition: opacity 2.8s ease;
 ">
-    <div style="
+        <div style="
         background: white;
         padding: 30px;
         border-radius: 10px;
@@ -154,20 +154,23 @@
         max-width: 300px;
         width: 100%;
     ">
-        <h3>DoctorCel - Gerador Automático de Scripts</h3>
-        <h3>Bem Vindo(a)</h3>
-        <h3>🔐 Login</h3>
-        <p></p>
-        <input type="text" id="username" placeholder="Usuário" style="width: 90%; margin: 10px 0; padding: 8px;"><br>
-        <input type="password" id="password" placeholder="Senha" style="width: 90%; margin: 10px 0; padding: 8px;"><br>
-        <button style="padding: 10px 20px;">Entrar</button>
-        <p>Ferramenta Elaborada para Viabilizar Configurações de Equipamentos.</p>
-        <p id="error-msg" style="color: red; margin-top: 10px;"></p>
+            <h3>DoctorCel - Gerador Automático de Scripts</h3>
+            <h3>Bem Vindo(a)</h3>
+            <h3>🔐 Login</h3>
+            <p></p>
+            <input type="text" id="username" placeholder="Usuário"
+                style="width: 90%; margin: 10px 0; padding: 8px;"><br>
+            <input type="password" id="password" placeholder="Senha"
+                style="width: 90%; margin: 10px 0; padding: 8px;"><br>
+            <button style="padding: 10px 20px;">Entrar</button>
+            <p>Ferramenta Elaborada para Viabilizar Configurações de Equipamentos.</p>
+            <p id="error-msg" style="color: red; margin-top: 10px;"></p>
+        </div>
     </div>
-</div>
 
-     <h2 style="margin-bottom: 30px"><span style="font-size: 48px">🌐 </span> DoctorCel - Gerador Automático de Scripts <span
-            style="font-size: 48px">🌐</span></h2>
+    <h2 style="margin-bottom: 30px"><span style="font-size: 48px">🌐 </span> DoctorCel - Gerador Automático de Scripts
+        <span style="font-size: 48px">🌐</span>
+    </h2>
 
 
     <div class="menu">
@@ -336,17 +339,18 @@
             let ko = document.getElementById("vlancheck");
 
             if (menu.value == 'AG561' && ko.checked) {
-                document.getElementById('content').value = 
+                document.getElementById('content').value =
                     "! ### CADASTRA USUARIO EBT ###" + "\n" +
+                    "config login user EBT " + "\n" +
                     "config login user EBT pwhash $1$cef2x27L$rK4l78klX419m70Nf2rhu0" + "\n" +
                     "config login user EBT privilege_level admin" + "\n" +
                     "! ### CONFIGURAÇÃO VLAN ####" + "\n" +
                     "config network switch vlan_mode enable" + "\n" +
-                    "config network switch cpu vlan_default " + vlan_ali +  "\n" +
-                    "config network switch cpu vlan_allowed " + vlan_ali +  "\n" +
-                    "config network switch port1 vlan_default " + vlan_ali +  "\n" +
-                    "config network switch port1 vlan_allowed " + vlan_ali +  "\n" +
-                    "config network switch port1 vlan_policy insert"  +  "\n" +
+                    "config network switch cpu vlan_default " + vlan_ali + "\n" +
+                    "config network switch cpu vlan_allowed " + vlan_ali + "\n" +
+                    "config network switch port1 vlan_default " + vlan_ali + "\n" +
+                    "config network switch port1 vlan_allowed " + vlan_ali + "\n" +
+                    "config network switch port1 vlan_policy insert" + "\n" +
                     "! ### AJUSTA REDE WAN ###" + "\n" +
                     "config network switch port1 mode autoneg" + "\n" +
                     "config network ip type static" + "\n" +
@@ -356,11 +360,12 @@
                     "config network mtu 1400" + "\n" +
                     "! ### APLICA E SALVA ###" + "\n" +
                     "config apply" + "\n" +
-                    "config save" + "\n"; 
+                    "config save" + "\n";
             }
             else if (menu.value == 'AG561') {
                 document.getElementById('content').value =
                     "! ### CADASTRA USUARIO EBT ###" + "\n" +
+                    "config login user EBT " + "\n" +
                     "config login user EBT pwhash $1$cef2x27L$rK4l78klX419m70Nf2rhu0" + "\n" +
                     "config login user EBT privilege_level admin" + "\n" +
                     "! ### AJUSTA REDE WAN ###" + "\n" +
@@ -373,18 +378,64 @@
                     "config network mtu 1400" + "\n" +
                     "! ### APLICA E SALVA ###" + "\n" +
                     "config apply" + "\n" +
-                    "config save" + "\n"; 
+                    "config save" + "\n";
 
             } else if (menu.value == 'AG1600' && ko.checked) {
 
-                document.getElementById('content').value = 
-                "config login user EBT password" + "\n" + "PRO1AN" + "\n" + "PRO1AN" + "\n" + "config login user EBT privilege_level admin" + "\n" + "!" + "\n" + "config network " + "\n" + "!" + "\n" + "defaultgw " + (incrementIP(document.getElementById("text_id").value)) + "\n" + "!" + "\n" + "ethernet0 mtu 1400" + "\n" + "!" + "\n" + "telnet enabled yes" + "\n" + "!" + "\n" + "ethernet0" + "\n" + "!" + "\n" + "ip type static" + "\n" + "!" + "\n" + "ip address" + "\n" + "!" + "\n" + "ip vlan " + vlan_ali + "\n" + "!" + "\n" + "type static" + "\n" + "!" + "\n" + "address " + document.getElementById("text_id").value + "\n" + "!" + "\n" + "netmask 255.255.255.252" + "\n" + "!" + "\n" + "exit" + "\n" + "!" + "\n" + "config firewall state disabled" + "\n" + "!" + "\n" + "exit" + "\n" + "config apply" + "\n" + "config save" + "\n" + "tools ping -c 50 -s 1500 " + (incrementIP(document.getElementById("text_id").value)) + "\n";
+                document.getElementById('content').value =
+                    "! ### AJUSTA REDE WAN ###" + "\n" +
+                    "config network defaultgw 9.9.9.8" + "\n" +
+                    "config network telnet enabled yes" + "\n" +
+                    "" + "\n" +
+                    "! ### ETHERNET 0 ###" + "\n" +
+                    "config network ethernet0 mtu 1400" + "\n" +
+                    "config network ethernet0 lag disabled" + "\n" +
+                    "!" + "\n" +
+                    "config network ethernet0 ip type static" + "\n" +
+                    "config network ethernet0 ip vlan " + vlan_ali + "\n" +
+                    "config network ethernet0 ip vlan " + vlan_ali  + " " + document.getElementById("text_id").value  + "\n" +
+                        "config network ethernet0 ip vlan " + vlan_ali + " " + (incrementIP(document.getElementById("text_id").value))   + "\n" +
+                            "" + "\n" +
+                            "" + "\n" +
+                            "! ### DISATIVA FIREWALL ####" + "\n" +
+                            "config firewall state disabled" + "\n" +
+                            "" + "\n" +
+                            "! ### CONFIGURA USUARIO EBT ####" + "\n" +
+                            "config login user EBT " + "\n" +
+                            "config login user EBT privilege_level admin" + "\n" +
+                            "config login user EBT pwhash $6$4JjSnNWu$18v.EVXvlk6igB6/RAEmj14gy0as8i4DU1V7tReXAK07oEzFtV0RUGonUI71ZJ33JvjK.LZm1Nt418Cs8Az6z0" + "\n" +
+                            "config apply" + "\n" +
+                            "config save" + "\n" +
+                            "" + "\n" +
+                            "" + "\n";
 
             } else if (menu.value == 'AG1600') {
 
-                document.getElementById('content').value = "config login user EBT password" + "\n" + "PRO1AN" + "\n" + "PRO1AN" + "\n" + "config login user EBT privilege_level admin" + "\n" + "!" + "\n" + "config network " + "\n" + "!" + "\n" + "ethernet0 mtu 1400" + "\n" + "!" + "\n" + "ethernet0 mode 100full" + "\n" + "!" + "\n" + "telnet enabled yes" + "\n" + "!" + "\n" + "ethernet0" + "\n" + "!" + "\n" + "ip defaultgw " + (incrementIP(document.getElementById("text_id").value)) + "\n" + "ip type static" + "\n" + "!" + "\n" + "ip address " + document.getElementById("text_id").value + "\n" + "!" + "\n" + "netmask 255.255.255.252" + "\n" + "!" + "\n" + "exit" + "\n" + "!" + "\n" + "config firewall state disabled" + "\n" + "!" + "\n" + "exit" + "\n" + "config apply" + "\n" + "config save" + "\n" + "tools ping -c 50 -s 1500 " + (incrementIP(document.getElementById("text_id").value)) + "\n";
+                document.getElementById('content').value =
+                    "! ### AJUSTA REDE WAN ###" + "\n" +
+                    "config network defaultgw " + (incrementIP(document.getElementById("text_id").value)) + "\n" +
+                    "config network telnet enabled yes" + "\n" +
+                    "" + "\n" +
+                    "! ### ETHERNET 0 ###" + "\n" +
+                    "config network ethernet0 mtu 1400" + "\n" +
+                    "config network ethernet0 lag disabled" + "\n" +
+                    "!" + "\n" +
+                    "config network ethernet0 ip type static" + "\n" +
+                    "config network ethernet0 ip address " + document.getElementById("text_id").value + "\n" +
+                    "config network ethernet0 ip netmask " + (incrementIP(document.getElementById("text_id").value)) + "\n" +
+                    "" + "\n" +
+                    "! ### DISATIVA FIREWALL ####" + "\n" +
+                    "config firewall state disabled" + "\n" +
+                    "" + "\n" +
+                    "! ### CONFIGURA USUARIO EBT ####" + "\n" +
+                    "config login user EBT " + "\n" +
+                    "config login user EBT privilege_level admin" + "\n" +
+                    "config login user EBT pwhash $6$4JjSnNWu$18v.EVXvlk6igB6/RAEmj14gy0as8i4DU1V7tReXAK07oEzFtV0RUGonUI71ZJ33JvjK.LZm1Nt418Cs8Az6z0" + "\n" +
+                    "config apply" + "\n" +
+                    "config save" + "\n" +
+                    "" + "\n";
 
-
+                //   "config login user EBT concurrent_login yes" + "\n" +
             }
             else {
                 document.location.reload(true);
@@ -811,28 +862,28 @@
     </div>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const overlay = document.getElementById("login-overlay");
-    const button = overlay.querySelector("button");
-    const errorMsg = document.getElementById("error-msg");
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("login-overlay");
+            const button = overlay.querySelector("button");
+            const errorMsg = document.getElementById("error-msg");
 
-    button.addEventListener("click", function () {
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
+            button.addEventListener("click", function () {
+                const username = document.getElementById("username").value.trim();
+                const password = document.getElementById("password").value.trim();
 
-        if (username === "EBT" && password === "PRO1AN") {
-        overlay.style.opacity = "0";
-            setTimeout(() => {
-                overlay.style.display = "none";
-            }, 3800);
-        } else {
-            errorMsg.textContent = "Usuário ou senha inválido!";
-        }
-    });
-});
-</script>
+                if (username === "EBT" && password === "PRO1AN") {
+                    overlay.style.opacity = "0";
+                    setTimeout(() => {
+                        overlay.style.display = "none";
+                    }, 3800);
+                } else {
+                    errorMsg.textContent = "Usuário ou senha inválido!";
+                }
+            });
+        });
+    </script>
 
-  
+
 </body>
 <br>
 <label id="dateLabel" aria-label="Current Date Label" style="white-space: pre-line;"></label>
